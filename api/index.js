@@ -1,12 +1,10 @@
 import express from "express";
 import mongoose from "mongoose";
-import dotenv from 'dotenv'
-
-dotenv.config()
+import dotenv from "dotenv";
+import userRoutes from "./routes/user.route.js";
+dotenv.config();
 mongoose
-  .connect(
-    process.env.MONGO
-  )
+  .connect(process.env.MONGO)
   .then(() => {
     console.log(`connected to MongoDB`);
   })
@@ -17,3 +15,4 @@ const app = express();
 app.listen(3000, () => {
   console.log(`server is running`);
 });
+app.use("/test", userRoutes);
