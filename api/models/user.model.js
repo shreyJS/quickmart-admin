@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+// 7 users
 const userSchema = new mongoose.Schema(
   {
     username: {
