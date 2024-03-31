@@ -86,6 +86,17 @@ export default function DashSidebar() {
               </Sidebar.Item>
             </Link>
           )}
+          {currentUser.isAdmin && (
+            <Link to="/dashboard?tab=orders">
+              <Sidebar.Item
+                active={tab === "orders"}
+                icon={HiOutlineUserGroup}
+                as="div"
+              >
+                Orders
+              </Sidebar.Item>
+            </Link>
+          )}
           <Sidebar.Item
             icon={HiArrowSmRight}
             className="cursor-pointer"
