@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quickmart_01/pages/cart_details.dart';
+import 'package:quickmart_01/pages/favorite_screen.dart';
+import 'package:quickmart_01/providers/cart_provider.dart';
 import 'package:quickmart_01/widgets/available_size.dart';
 
 import '../models/product.dart';
@@ -9,6 +12,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = CartProvider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Details"),
@@ -214,7 +218,15 @@ class DetailsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  provider.toggleProduct(product);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CartDetails(),
+                    ),
+                  );
+                },
                 icon: const Icon(Icons.add),
                 label: const Text(
                   "Add To Cart",

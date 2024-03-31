@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quickmart_01/pages/cart_details.dart';
 import 'package:quickmart_01/pages/categories_screen.dart';
 import 'package:quickmart_01/pages/home_screen.dart';
 import 'package:quickmart_01/pages/orders_screen.dart';
-import 'package:quickmart_01/pages/settings_screen.dart';
+import 'package:quickmart_01/pages/favorite_screen.dart';
+import 'package:quickmart_01/providers/cart_provider.dart';
+import 'providers/favorite_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,13 +17,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Quickmart',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => FavoriteProvider()), ChangeNotifierProvider(create: (_) => CartProvider())],
+      child: MaterialApp(
+        title: 'Quickmart',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const Home(),
       ),
-      home: const Home(),
     );
   }
 }
@@ -37,7 +45,7 @@ class _HomeState extends State<Home> {
     const HomeScreen(),
     const CategoriesScreen(),
     const OrdersScreen(),
-    const SettingsScreen(),
+    const FavoriteScreen(),
   ];
 
   @override
@@ -45,6 +53,13 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Quickmart"),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CartDetails())),
+              icon: const Icon(Icons.add_shopping_cart))
+        ],
       ),
       body: screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:quickmart_01/providers/favorite_provider.dart';
 import '../models/product.dart';
 
 class ProductCard extends StatefulWidget {
@@ -13,6 +13,7 @@ class ProductCard extends StatefulWidget {
 class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
+    final provider = FavoriteProvider.of(context);
     return Container(
       width: MediaQuery.of(context).size.width / 2,
       decoration: BoxDecoration(
@@ -21,12 +22,17 @@ class _ProductCardState extends State<ProductCard> {
       ),
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Icon(
-                Icons.favorite_border_outlined,
-                color: Colors.green,
+              GestureDetector(
+                onTap: () => provider.toggleFavorite(widget.product),
+                child: Icon(
+                  provider.isExist(widget.product)
+                      ? Icons.favorite
+                      : Icons.favorite_border_outlined,
+                  color: Colors.green,
+                ),
               ),
             ],
           ),
