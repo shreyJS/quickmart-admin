@@ -104,13 +104,14 @@ export default function CreateProduct() {
             }
           >
             <option value="uncategorized">Select category</option>
-            <option value="grocery">Grocery</option>
-            <option value="soaps-and-detergents">Soaps and Detergents</option>
-            <option value="general">General</option>
-            <option value="flours">Flours</option>
-            <option value="toothbrush">Toothbrush</option>
-            <option value="broom">Broom</option>
-            <option value="biscuit">Biscuit</option>
+            <option value="wheat">Wheat</option>
+            <option value="mix-masala">Mix Masala</option>
+            <option value="flour">Flour</option>
+            <option value="sing">Sing</option>
+            <option value="bhagar">Bhagar</option>
+            <option value="indrayani-rice">Indrayani Rice</option>
+            <option value="nachni">Nachni</option>
+            <option value="jaggery">Jaggery</option>
           </Select>
           <TextInput
             type="number"
